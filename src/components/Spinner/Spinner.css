@@ -1,0 +1,10 @@
+.spinner {
+    min-height: calc(100vh - (70px + 215px + 60px));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .spinner img {
+    width: 300px;
+    object-fit: cover;
+  }

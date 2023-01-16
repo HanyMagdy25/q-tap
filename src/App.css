@@ -72,3 +72,8 @@ p {
   background-color: transparent;
   border: none;
 }
+
+/* register__div */
+.register__div{
+  background-color: #bababa;
+}

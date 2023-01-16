@@ -1,0 +1,32 @@
+.features__paragraph{
+    font-size: 18px;
+}
+.features__cards-div{
+    gap: 2%;
+}
+.FeaturesCards{
+    width: 32%;
+    background-color: #F5F3F378;
+    border-radius: 15px;
+    padding: 20px;
+}
+.FeaturesCards img{
+    width: 40px;
+}
+.FeaturesCards h3{
+    color: var(--color-black);
+    margin-top:10px ;
+}
+
+@media screen and (max-width:1000px) {
+    .FeaturesCards{
+        width: 49%;
+       
+    }
+}
+@media screen and (max-width:576px) {
+    .FeaturesCards{
+        width: 100%;
+       
+    }
+}

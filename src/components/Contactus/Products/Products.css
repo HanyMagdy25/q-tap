@@ -1,0 +1,45 @@
+
+.products__cards-div {
+  gap: 2%;
+  margin-top: 40px;
+}
+.productCard {
+  width: 23.5%;
+  border-radius: 20px;
+  margin-top: 30px;
+}
+.productCard__image {
+  background-color: #ececec;
+  width: 100%;
+  height: 400px;
+  border-radius: 20px;
+}
+.productCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+.productCard h3 {
+  font-size: 17px;
+  font-weight: 500;
+  color: black;
+  
+}
+.btn-fw{
+    width: 100%;
+
+}
+
+@media screen and (max-width:1000px) {
+    .productCard {
+        width: 49%;
+  
+      }
+}
+@media screen and (max-width:768px) {
+    .productCard {
+        width: 100%;
+  
+      }
+}

@@ -54,7 +54,9 @@ const Navbar = ({ loadingLogo }) => {
                 <option value="ar">AR</option>
               </select>
             </div>
-            <button className="btn btn-custom">Login</button>
+            <Link to="/register">
+              <button className="btn btn-custom">Login</button>
+            </Link>
           </ul>
         </div>
       </nav>

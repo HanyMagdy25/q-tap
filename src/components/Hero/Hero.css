@@ -1,7 +1,7 @@
 .hero__content {
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: flex-start;
 }
 .hero__content h1 {

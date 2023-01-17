@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
+import { Link } from "react-router-dom";
 function Register() {
   const [value, setValue] = useState();
   const [country, setCountry] = useState("");
   const [region, setRegion] = useState("");
+  const [checkBtn, setCheckBtn] = useState(true);
   console.log(region);
   return (
     <div className="register">
@@ -131,19 +133,32 @@ function Register() {
                 </div>
               </div>
 
-              <div className="mb-3 form-check">
+              <div className="mb-3 form-check flex-center gap-2">
                 <input
                   type="checkbox"
                   className="form-check-input"
                   id="exampleCheck1"
+                  onChange={(e) => setCheckBtn(!checkBtn)}
                 />
                 <label className="form-check-label" htmlFor="exampleCheck1">
-                  Check me out
+                  By signing up you agree to our
+                  <a href="/"> Terms & Conditions</a> &{" "}
+                  <a href="/">Privacy Policy</a>.
                 </label>
               </div>
-              <button type="submit" className="btn btn-primary">
+              <button
+                type="submit"
+                disabled={checkBtn}
+                className="btn btn-custom btn-fw"
+              >
                 Submit
               </button>
+
+              <div className="mt-3 already">
+                <h6>
+                  Already have an account? <Link to="/login">Sign in here</Link>
+                </h6>
+              </div>
             </form>
           </div>
         </div>

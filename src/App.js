@@ -4,6 +4,7 @@ import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import About from "./pages/About";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 import Product from "./pages/Product";
 import Register from "./pages/Register";
 import Store from "./pages/Store";
@@ -19,6 +20,7 @@ function App() {
           <Route path="/store" element={<Store />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Footer />
       </Router>

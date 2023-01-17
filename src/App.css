@@ -74,10 +74,15 @@ p {
 }
 
 /* register__div */
+.register{
+  min-height: calc(100vh - 90px - 44px);
+}
 .register__div {
   background-color: #ececec;
-  padding: 60px !important;
+  padding: 50px !important;
   border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 30px;
 }
 .register__div__title {
   text-align: center;
@@ -113,7 +118,15 @@ p {
   box-shadow: none !important;
   background: none !important;
 }
-
+.form-check {
+display: flex !important;
+justify-content: start !important;
+}
+.form-check-label a,
+.already a,
+.remember a{
+  color: var(--color-title);
+}
 @media screen and (max-width: 768px) {
   .register__div {
     padding: 30px !important;

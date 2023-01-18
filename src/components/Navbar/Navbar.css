@@ -84,6 +84,9 @@
 .btn-custom:hover{
     background-color: var(--color-title-hover) !important;
 }
+.cart-div svg{
+  color: var(--color-text);
+}
 /* ======== media ======= */
 @media screen and (max-width: 1000px) {
   .navbar-container {

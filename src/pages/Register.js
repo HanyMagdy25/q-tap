@@ -142,8 +142,8 @@ function Register() {
                 />
                 <label className="form-check-label" htmlFor="exampleCheck1">
                   By signing up you agree to our
-                  <a href="/"> Terms & Conditions</a> &{" "}
-                  <a href="/">Privacy Policy</a>.
+                  <Link to="/terms"> Terms & Conditions</Link> &{" "}
+                  <Link to="/policy">Privacy Policy</Link>.
                 </label>
               </div>
               <button

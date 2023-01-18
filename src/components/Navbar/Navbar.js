@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { BsGlobe2 } from "react-icons/bs";
+import { BsGlobe2, BsCart } from "react-icons/bs";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
 
@@ -53,6 +53,11 @@ const Navbar = ({ loadingLogo }) => {
                 <option value="en">EN</option>
                 <option value="ar">AR</option>
               </select>
+            </div>
+            <div className="mx-3 cart-div">
+              <Link to="/cart">
+                <BsCart />
+              </Link>
             </div>
             <Link to="/register">
               <button className="btn btn-custom">Login</button>

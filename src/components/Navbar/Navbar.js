@@ -55,7 +55,7 @@ const Navbar = ({ loadingLogo }) => {
               </select>
             </div>
             <div className="mx-3 cart-div">
-              <Link to="/cart">
+              <Link to="/cart" className="flex-center">
                 <BsCart />
               </Link>
             </div>

@@ -14,8 +14,8 @@ function ProductCard({ item }) {
       </Link>
 
       <div>
-        <h3 className="mt-3"> {truncate(item.title, 70)}</h3>
-        <h3>LE {item.price}</h3>
+        <h3 className="mt-3 productCard__title"> {truncate(item.title, 70)}</h3>
+        <h3 className="productCard__price">LE {item.price}</h3>
         <button className="btn btn-custom btn-fw mt-3 z">Add To Cart</button>
       </div>
     </div>

@@ -4,6 +4,7 @@ import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import About from "./pages/About";
 import Cart from "./pages/Cart";
+import ContactUs from "./pages/ContactUs";
 import ForgetPassword from "./pages/ForgetPassword";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -29,6 +30,7 @@ function App() {
           <Route path="/policy" element={<Policy />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/Contact" element={<ContactUs />} />
         </Routes>
         <Footer />
       </Router>

@@ -199,6 +199,12 @@ p {
   object-fit: cover;
   border-radius: 10px;
 }
+/* Pages */
+.home__page,
+.Store,
+.about{
+  min-height: calc(100vh - 90px - 44px);
+}
 @media screen and (max-width: 768px) {
   .register__div {
     padding: 30px !important;

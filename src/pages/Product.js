@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ProductsCards } from "../utils/data";
 
 function Product() {
+  const [count, setCount] = useState(0);
   const param = useParams();
   const oneProduct = ProductsCards.find((a) => a.id === parseInt(param.id));
-  console.log(oneProduct);
+
   return (
     <div className="product">
       <div className="container">
@@ -21,9 +22,24 @@ function Product() {
             <p>Quantity</p>
             <div className="d-flex gap-3">
               <div className="div-btns-increase">
-                <button className="increase">+</button>
-                <span className="increase">1</span>
-                <button className="increase">-</button>
+                <button
+                  onClick={() => {
+                    setCount(count + 1);
+                  }}
+                  className="increase"
+                >
+                  +
+                </button>
+                <span className="increase">{count}</span>
+                <button
+                  onClick={() => {
+                    setCount(count - 1);
+                  }}
+                  disabled={count < 1}
+                  className="increase"
+                >
+                  -
+                </button>
               </div>
               <button className="btn btn-custom btn-fw">Add To Cart</button>
             </div>
@@ -34,8 +50,8 @@ function Product() {
           <h2 className="mb-5 mt-5">You Might Also like</h2>
           <div className="row mb-5 ">
             {ProductsCards?.slice(0, 3).map((item, index) => (
-              <Link to={`/product/${item.id}`} className="col-4">
-                <div key={index}>
+              <Link key={index} to={`/product/${item.id}`} className="col-4">
+                <div >
                   <img
                     src={item.image}
                     alt={item.title}

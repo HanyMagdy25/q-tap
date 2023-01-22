@@ -1,23 +1,25 @@
 import React from "react";
 import ProductCard from "../components/Contactus/Products/ProductCard";
-import Products from "../components/Contactus/Products/Products";
-import { ProductsCards } from "../utils/data";
+import Spinner from "../components/Spinner/Spinner";
 
-function Store() {
+function Store({ productsData, loadingProducts, lang }) {
   return (
     <div className="Store mt-5">
       <div className="container">
         <div className="flex-center">
           <div className="main__title-div">
-            <h2>Store</h2>
+            <h2> {lang === "en" ? "Store" : "خدماتنا"}</h2>
           </div>
         </div>
-
-        <div className="products__cards-div d-flex flex-wrap mb-5">
-          {ProductsCards.map((item, index) => (
-            <ProductCard key={index} item={item} />
-          ))}
-        </div>
+        {loadingProducts ? (
+          <Spinner />
+        ) : (
+          <div className="products__cards-div d-flex flex-wrap mb-5">
+            {productsData.map((item, index) => (
+              <ProductCard key={index} item={item} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

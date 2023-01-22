@@ -1,6 +1,4 @@
-import bannerImage from "../../assets/banner.jpg";
-
-function Banner() {
+function Banner({bannerData}) {
   return (
     <section className="banner mt-5">
       <div className="container">
@@ -10,8 +8,8 @@ function Banner() {
           </div>
         </div>
         <div className="banner__image ">
-          <a href="https://www.google.com/" target="_blank" rel="noreferrer">
-            <img src={bannerImage} alt="banner" />
+          <a href={bannerData.url} target="_blank" rel="noreferrer">
+            <img src={bannerData.image} alt="banner" />
           </a>
         </div>
       </div>

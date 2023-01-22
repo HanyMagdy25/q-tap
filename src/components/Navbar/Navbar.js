@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { BsGlobe2, BsCart } from "react-icons/bs";
+import { MdKeyboardArrowDown } from "react-icons/md";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
+import profileImg from "../../assets/profile.png";
 
 import { navTitle } from "../../utils/data";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Spinner from "../Spinner/Spinner";
+import Dropdown from "./Dropdown";
 
-const Navbar = ({ loadingLogo }) => {
+const Navbar = ({ loadingLogo, setLang, userOfLivre, lang }) => {
   const [click, setClick] = useState(false);
+  const [dropNav, setDropNav] = useState(false);
 
   const handleClick = () => setClick(!click);
 
@@ -39,7 +43,8 @@ const Navbar = ({ loadingLogo }) => {
                     handleClick();
                   }}
                 >
-                  {item.title}
+                  {lang === "en" ? `${item.title}`: `${item.titleArabic}` }
+                  
                 </NavLink>
               </li>
             ))}
@@ -48,6 +53,7 @@ const Navbar = ({ loadingLogo }) => {
               <select
                 onChange={(e) => {
                   handleClick();
+                  setLang(e.target.value);
                 }}
               >
                 <option value="en">EN</option>
@@ -59,9 +65,22 @@ const Navbar = ({ loadingLogo }) => {
                 <BsCart />
               </Link>
             </div>
-            <Link to="/register">
-              <button className="btn btn-custom">Login</button>
-            </Link>
+            {userOfLivre ? (
+              <Link to="/register">
+                <button className="btn btn-custom">Login</button>
+              </Link>
+            ) : (
+              <div
+                className="profile-navbar"
+                onClick={() => setDropNav(!dropNav)}
+              >
+                <img src={profileImg} alt="profile-img" loading="lazy" />
+                <span className="flex-center">
+                  <MdKeyboardArrowDown />
+                </span>
+                {dropNav && <Dropdown lang={lang} />}
+              </div>
+            )}
           </ul>
         </div>
       </nav>

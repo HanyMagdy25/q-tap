@@ -1,22 +1,40 @@
 import React from "react";
-
-function Policy() {
+import { useState } from "react";
+import { useEffect } from "react";
+import Spinner from "../components/Spinner/Spinner";
+const url_main = "http://q-tap-dashboard.technomasrsystems.com";
+function Policy({lang}) {
+  const [loadingAbout, setLoadingAbout] = useState(true);
+  const [termsData, setTermsData] = useState({});
+  // *********** Fetch Terms ***********
+  useEffect(() => {
+    fetch(`${url_main}/api/termsConditions`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        lang: lang,
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setLoadingAbout(false);
+        setTermsData(data.data[1]);
+      });
+  }, [lang]);
   return (
     <div className="terms">
+    {loadingAbout ? (
+      <Spinner />
+    ) : (
       <div className="container">
-        <h1>Privacy Policy</h1>
-        <p>
-          At infyom, accessible from mycoding.id, one of our main priorities is
-          the privacy of our visitors. This Privacy Policy document contains
-          types of information that is collected and recorded by infyom and how
-          we use it. If you have additional questions or require more
-          information about our Privacy Policy, do not hesitate to contact us.
-          This Privacy Policy applies only to our online activities and is valid
-          for visitors to our website with regards to the information that they
-          shared and/or collect in infyom.
-        </p>
+        <h1>{termsData.title}</h1>
+        {/* <h3>Welcome to Qtap!</h3> */}
+        <div dangerouslySetInnerHTML={{ __html: termsData.content }} />
       </div>
-    </div>
+    )}
+  </div>
   );
 }
 

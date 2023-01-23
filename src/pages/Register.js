@@ -2,20 +2,66 @@ import React, { useState } from "react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
-import { Link } from "react-router-dom";
-function Register() {
-  const [value, setValue] = useState();
+import { Link, useNavigate } from "react-router-dom";
+const url_main = "http://q-tap-dashboard.technomasrsystems.com";
+function Register({lang,setUserName}) {
   const [country, setCountry] = useState("");
   const [region, setRegion] = useState("");
   const [checkBtn, setCheckBtn] = useState(true);
-  console.log(region);
+  const [name, setName] = useState("");
+  const [last_name, setLast_name] = useState("");
+  const [job_title, setJob_title] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirm_password, setConfirm_password] = useState("");
+  const [done, setDone] = useState("");
+  // console.log("country",country);
+  const navigate = useNavigate();
+
+  const handleContact = (e) => {
+    e.preventDefault();
+    const blog = {
+      name,
+      last_name,
+      phone,
+      job_title,
+      password,
+      confirm_password,
+      email,
+      country,
+      city: region,
+    };
+    fetch(`${url_main}/api/user/register`, {
+      method: "POST",
+      // credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        lang: "en",
+      },
+      body: JSON.stringify(blog),
+    })
+      .then((data) => data.json())
+      .then((res) => {
+        setDone(res.status);
+
+        console.log("res", res);
+        if (res.status === true) {
+          // setUserTokenQTap(res.user)
+          setUserName(res.user.name)
+          localStorage.setItem("token-q-tap", JSON.stringify(res));
+          window.location.href = "/";
+        }
+      })
+      .catch((error) => alert(error));
+  };
   return (
     <div className="register">
       <div className="container">
         <div className="row justify-content-center align-items-center">
           <div className="register__div col-11 col-md-8">
             <h2 className="register__div__title mb-5">Create an Account</h2>
-            <form>
+            <form onSubmit={handleContact}>
               <div className="row">
                 <div className="mb-3 col-12 col-md-6">
                   <label htmlFor="exampleInputFirstName" className="form-label">
@@ -26,6 +72,8 @@ function Register() {
                     className="form-control"
                     id="exampleInputFirstName"
                     placeholder="First Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </div>
                 <div className="mb-3 col-12 col-md-6">
@@ -37,6 +85,8 @@ function Register() {
                     className="form-control"
                     id="exampleInputSecond"
                     placeholder="Last Name"
+                    value={last_name}
+                    onChange={(e) => setLast_name(e.target.value)}
                   />
                 </div>
               </div>
@@ -51,6 +101,8 @@ function Register() {
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
                   placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               {/* Passwords */}
@@ -64,6 +116,8 @@ function Register() {
                     className="form-control"
                     id="exampleInputPassword1"
                     placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div className="mb-3 col-12 col-md-6">
@@ -78,6 +132,8 @@ function Register() {
                     className="form-control"
                     id="exampleInputConfirmPassword"
                     placeholder="Confirm Password"
+                    value={confirm_password}
+                    onChange={(e) => setConfirm_password(e.target.value)}
                   />
                 </div>
               </div>
@@ -90,8 +146,8 @@ function Register() {
                   </label>
                   <PhoneInput
                     placeholder="Enter phone number"
-                    value={value}
-                    onChange={setValue}
+                    value={phone}
+                    onChange={setPhone}
                   />
                 </div>
               </div>
@@ -105,6 +161,8 @@ function Register() {
                   className="form-control"
                   id="exampleInputJob"
                   placeholder="Job Title"
+                  value={job_title}
+                  onChange={(e) => setJob_title(e.target.value)}
                 />
               </div>
 

@@ -8,6 +8,7 @@ import {
 import "./App.css";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
+import { GlobalProvider } from "./context/GlobalContext";
 import About from "./pages/About";
 import Cart from "./pages/Cart";
 import ContactUs from "./pages/ContactUs";
@@ -25,6 +26,10 @@ function App() {
   const [lang, setLang] = useState("en");
   const [loadingProducts, setLoadingProducts] = useState(true);
   const [productsData, setProductsData] = useState(true);
+  const [tokenQTap, setTokenQTap] = useState(null);
+  const [userName, setUserName] = useState("");
+
+  console.log("userName",userName)
 
   // To Change Direction In Body html and css
   useEffect(() => {
@@ -49,11 +54,19 @@ function App() {
         return res.json();
       })
       .then((data) => {
-        console.log("products", data);
         setLoadingProducts(false);
         setProductsData(data.data);
       });
   }, [lang]);
+
+  useEffect(() => {
+    setTokenQTap(
+      localStorage.getItem("token-q-tap")
+        ? JSON.parse(localStorage.getItem("token-q-tap"))
+        : null
+    );
+
+  }, []);
 
   function ScrollToTop() {
     const { pathname } = useLocation();
@@ -63,10 +76,11 @@ function App() {
     return null;
   }
   return (
+    // <GlobalProvider>
     <div className="App">
       <Router>
         <ScrollToTop />
-        <Navbar setLang={setLang} lang={lang} />
+        <Navbar setLang={setLang} lang={lang} tokenQTap={tokenQTap} />
         <Routes>
           <Route
             path="/"
@@ -89,18 +103,22 @@ function App() {
               />
             }
           />
-          <Route path="/product/:id" element={<Product />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/product/:id"
+            element={<Product lang={lang} productsData={productsData} />}
+          />
+          <Route path="/register" element={<Register lang={lang} setUserName={setUserName} />} />
+          <Route path="/login" element={<Login lang={lang}/>} />
           <Route path="/terms" element={<Terms lang={lang} />} />
-          <Route path="/policy" element={<Policy />} />
-          <Route path="/forget-password" element={<ForgetPassword />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/Contact" element={<ContactUs />} />
+          <Route path="/policy" element={<Policy lang={lang} />} />
+          <Route path="/forget-password" element={<ForgetPassword lang={lang}/>} />
+          <Route path="/cart" element={<Cart lang={lang}/>} />
+          <Route path="/Contact" element={<ContactUs lang={lang} />} />
         </Routes>
         <Footer />
       </Router>
     </div>
+    // </GlobalProvider>
   );
 }
 

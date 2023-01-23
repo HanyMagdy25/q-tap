@@ -1,17 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 // Icons
 import { AiOutlineUser } from "react-icons/ai";
 import { MdLogout } from "react-icons/md";
-
-const navProfile = [
-  {
-    titleEn: "Profile",
-    titleAr: "حسابك",
-    path: "/profile",
-    icon: <AiOutlineUser />,
-  },
-];
 
 // MdLogout
 
@@ -20,23 +10,26 @@ const Dropdown = ({ lang }) => {
   return (
     <>
       <ul onClick={() => setDrop(!drop)} className="dropdown-main">
-        {navProfile.map((item, index) => (
-          <li key={index}>
-            <Link to={item.path} onClick={() => setDrop(!drop)}>
-              {lang === "en" ? (
-                <>
-                  <span className="flex-center">{item.icon}</span>
-                  {item.titleEn}
-                </>
-              ) : (
-                <>
-                  <span className="flex-center">{item.icon}</span>
-                  {item.titleAr}
-                </>
-              )}
-            </Link>
-          </li>
-        ))}
+        <li>
+          <a href="https://www.dibiz.com/?a_l=1" onClick={() => setDrop(!drop)}>
+            {lang === "en" ? (
+              <>
+                <span className="flex-center">
+                  <AiOutlineUser />
+                </span>
+                Profile
+              </>
+            ) : (
+              <>
+                <span className="flex-center">
+                  <AiOutlineUser />
+                </span>
+                حسابك
+              </>
+            )}
+          </a>
+        </li>
+
         <li>
           <a
             href="/"

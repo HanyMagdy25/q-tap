@@ -11,7 +11,7 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Spinner from "../Spinner/Spinner";
 import Dropdown from "./Dropdown";
 
-const Navbar = ({ loadingLogo, setLang, userOfLivre, lang }) => {
+const Navbar = ({ loadingLogo, setLang, lang,tokenQTap }) => {
   const [click, setClick] = useState(false);
   const [dropNav, setDropNav] = useState(false);
 
@@ -65,7 +65,7 @@ const Navbar = ({ loadingLogo, setLang, userOfLivre, lang }) => {
                 <BsCart />
               </Link>
             </div>
-            {userOfLivre ? (
+            {!tokenQTap ? (
               <Link to="/register">
                 <button className="btn btn-custom">Login</button>
               </Link>

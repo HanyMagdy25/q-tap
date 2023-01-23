@@ -17,11 +17,8 @@ function About({ lang }) {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         setLoadingAbout(false);
         setAboutData(data.data.aboutus);
-        // setFeaturesData(data.data.features);
-        // setBannerData(data.data.banner);
       });
   }, [lang]);
   return (
@@ -33,7 +30,7 @@ function About({ lang }) {
           {/* About Top */}
           <div className="flex-center">
             <div className="main__title-div">
-              <h2>Contact Us</h2>
+              <h2>{lang === "en" ? "About Us" : "من نحن" }</h2>
             </div>
           </div>
           <div className="mt-5 pb-5">

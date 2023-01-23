@@ -1,11 +1,11 @@
 import React from "react";
 import ContactUsForm from "../components/ContactUsForm/ContactUsForm";
 
-function ContactUs() {
+function ContactUs({lang}) {
   return (
     <div className="ContactUs">
       <div className="container">
-        <ContactUsForm />
+        <ContactUsForm lang={lang}/>
       </div>
     </div>
   );

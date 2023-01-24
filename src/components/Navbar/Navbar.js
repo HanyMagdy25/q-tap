@@ -11,7 +11,7 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Spinner from "../Spinner/Spinner";
 import Dropdown from "./Dropdown";
 
-const Navbar = ({ loadingLogo, setLang, lang,tokenQTap }) => {
+const Navbar = ({ loadingLogo, setLang, lang, tokenQTap }) => {
   const [click, setClick] = useState(false);
   const [dropNav, setDropNav] = useState(false);
 
@@ -43,8 +43,7 @@ const Navbar = ({ loadingLogo, setLang, lang,tokenQTap }) => {
                     handleClick();
                   }}
                 >
-                  {lang === "en" ? `${item.title}`: `${item.titleArabic}` }
-                  
+                  {lang === "en" ? `${item.title}` : `${item.titleArabic}`}
                 </NavLink>
               </li>
             ))}
@@ -67,7 +66,9 @@ const Navbar = ({ loadingLogo, setLang, lang,tokenQTap }) => {
             </div>
             {!tokenQTap ? (
               <Link to="/register">
-                <button className="btn btn-custom">Login</button>
+                <button className="btn btn-custom">
+                  {lang === "en" ? `Login` : `تسجيل دخول`}
+                </button>
               </Link>
             ) : (
               <div

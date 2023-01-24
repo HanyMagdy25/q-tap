@@ -8,7 +8,7 @@ import Spinner from "../components/Spinner/Spinner";
 
 const url_main = "http://q-tap-dashboard.technomasrsystems.com";
 
-function Home({ lang, productsData, loadingProducts }) {
+function Home({ lang, productsData, loadingProducts ,tokenQTap}) {
   const [loadingHero, setLoadingHero] = useState(true);
   const [loadingContact, setLoadingContact] = useState(true);
 
@@ -66,8 +66,10 @@ function Home({ lang, productsData, loadingProducts }) {
           <Products
             productsData={productsData}
             loadingProducts={loadingProducts}
+            lang={lang}
+            tokenQTap={tokenQTap}
           />
-          <Banner bannerData={bannerData} />
+          <Banner bannerData={bannerData} lang={lang} />
           <Contactus
             contactData={contactData}
             loadingContact={loadingContact}

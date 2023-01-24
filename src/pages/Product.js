@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Spinner from "../components/Spinner/Spinner";
 const url_main = "http://q-tap-dashboard.technomasrsystems.com";
-function Product({ lang, productsData }) {
-  const [count, setCount] = useState(0);
+function Product({ lang, productsData,tokenQTap }) {
+  const [count, setCount] = useState(1);
 
   const [loadingProduct, setLoadingProduct] = useState(true);
   const [oneProduct, setOneProduct] = useState({});
@@ -27,6 +27,33 @@ function Product({ lang, productsData }) {
         setOneProduct(data.data);
       });
   }, [lang, param.id]);
+
+  const [msg, setMsg] = useState(false);
+
+  const handleOrder = (e) => {
+    e.preventDefault();
+    const blog = {
+      product_id: oneProduct.id,
+      price: oneProduct.price,
+      quantity:count,
+    };
+    fetch(`${url_main}/api/add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        lang: lang,
+        user: tokenQTap.user.id,
+        Authorization: `Bearer ${tokenQTap.token}`,
+      },
+      body: JSON.stringify(blog),
+    })
+      .then((data) => data.json())
+      .then((res) => {
+        if (res.status === true) {
+          setMsg(true);
+        }
+      });
+  };
 
   return (
     <div className="product">
@@ -67,14 +94,14 @@ function Product({ lang, productsData }) {
                     -
                   </button>
                 </div>
-                <button className="btn btn-custom btn-fw">
+                <button onClick={handleOrder} className="btn btn-custom btn-fw">
                   {lang === "en" ? "Add To Cart" : "أضف إلى السلة"}
                 </button>
               </div>
             </div>
           </div>
           {/* Products Bottom */}
-          <div className="product__bottom">
+          <div className="product__bottom ">
             <h2 className="mb-5 mt-5">
               {lang === "en" ? "You Might Also like" : "قد يعجبك ايضا"}
             </h2>

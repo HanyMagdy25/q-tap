@@ -1,10 +1,10 @@
-function Banner({bannerData}) {
+function Banner({ bannerData, lang }) {
   return (
     <section className="banner mt-5">
       <div className="container">
         <div className="flex-center">
           <div className="main__title-div">
-            <h2>Menu</h2>
+            <h2>{lang === "en" ? "Menu" : "القائمة"}</h2>
           </div>
         </div>
         <div className="banner__image ">

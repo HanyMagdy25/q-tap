@@ -2,32 +2,38 @@ import React, { useState } from "react";
 import CardProduct from "../components/CardProduct/CardProduct";
 import emptyImage from "../assets/empty.png";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { GlobalContext } from "../context/GlobalContext";
 import { useEffect } from "react";
+const url_main = "http://q-tap-dashboard.technomasrsystems.com";
 
-function Cart() {
-  const [products, setProducts] = useState([]);
-  
+function Cart({lang ,tokenQTap} ) {
+
   const [total, setTotal] = useState(null);
-  const [cartLocal, setCartLocal] = useState([]);
-  const { cart } = useContext(GlobalContext);
+  const [cartProducts, setCartProducts] = useState([]);
+  const [loadingProducts, setLoadingProducts] = useState(true);
   useEffect(() => {
-    setCartLocal(
-      localStorage.getItem("q-tap-cart")
-      ? JSON.parse(localStorage.getItem("q-tap-cart"))
-      : []
-      );
-      setTotal(
-        cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0)
-        );
-      }, [cart]);
-      const [count, setCount] = useState(cartLocal?.qty);
+    fetch(`${url_main}/api/orders`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        lang: lang,
+        user: tokenQTap.user.id,
+        Authorization: `Bearer ${tokenQTap.token}`,
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data.data)
+        setLoadingProducts(false);
+        setCartProducts(data.data);
+      });
+  }, [lang, tokenQTap.token, tokenQTap.user.id]);
   
 
   return (
     <>
-      {!cart.length > 0 ? (
+      {!cartProducts.length > 0 ? (
         <div className="cart">
           <div className="container flex-center">
             <div className="col-12 col-md-6">
@@ -50,11 +56,11 @@ function Cart() {
           <div className="container">
             <h1 className="cart__title text-center">Checkout</h1>
             <div className="cart__cards mt-5">
-              {cartLocal.map((item, index) => (
+              {cartProducts.map((item, index) => (
                 <CardProduct key={index} item={item} />
               ))}
             </div>
-            <div className="flex-center">
+            <div className="flex-center mb-5">
               <div className="cart__checkout col-12 col-md-4 text-center">
                 <h2>Your Cart Total</h2>
                 <h1>US$ {total}</h1>

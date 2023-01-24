@@ -2,7 +2,7 @@ import React from "react";
 import ProductCard from "../components/Contactus/Products/ProductCard";
 import Spinner from "../components/Spinner/Spinner";
 
-function Store({ productsData, loadingProducts, lang }) {
+function Store({ productsData, loadingProducts, lang ,tokenQTap}) {
   return (
     <div className="Store mt-5">
       <div className="container">
@@ -16,7 +16,7 @@ function Store({ productsData, loadingProducts, lang }) {
         ) : (
           <div className="products__cards-div d-flex flex-wrap mb-5">
             {productsData.map((item, index) => (
-              <ProductCard key={index} item={item} />
+              <ProductCard key={index} item={item} lang={lang} tokenQTap={tokenQTap}/>
             ))}
           </div>
         )}

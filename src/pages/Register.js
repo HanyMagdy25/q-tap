@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const url_main = "http://q-tap-dashboard.technomasrsystems.com";
-function Register({lang,setUserName}) {
+function Register({ lang }) {
   const [country, setCountry] = useState("");
   const [region, setRegion] = useState("");
   const [checkBtn, setCheckBtn] = useState(true);
@@ -15,9 +15,7 @@ function Register({lang,setUserName}) {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirm_password, setConfirm_password] = useState("");
-  const [done, setDone] = useState("");
   // console.log("country",country);
-  const navigate = useNavigate();
 
   const handleContact = (e) => {
     e.preventDefault();
@@ -43,13 +41,11 @@ function Register({lang,setUserName}) {
     })
       .then((data) => data.json())
       .then((res) => {
-        setDone(res.status);
-
         console.log("res", res);
         if (res.status === true) {
           // setUserTokenQTap(res.user)
-          setUserName(res.user.name)
           localStorage.setItem("token-q-tap", JSON.stringify(res));
+          localStorage.setItem("token", JSON.stringify(res.token));
           window.location.href = "/";
         }
       })
@@ -60,31 +56,33 @@ function Register({lang,setUserName}) {
       <div className="container">
         <div className="row justify-content-center align-items-center">
           <div className="register__div col-11 col-md-8">
-            <h2 className="register__div__title mb-5">Create an Account</h2>
+            <h2 className="register__div__title mb-5">
+            {lang === "en" ? "Create an Account" : "انشئ حساب"}
+            </h2>
             <form onSubmit={handleContact}>
               <div className="row">
                 <div className="mb-3 col-12 col-md-6">
                   <label htmlFor="exampleInputFirstName" className="form-label">
-                    First Name
+                    {lang === "en" ? "First Name" : "الاسم الاول"}
                   </label>
                   <input
                     type="text"
                     className="form-control"
                     id="exampleInputFirstName"
-                    placeholder="First Name"
+                    placeholder={lang === "en" ? "First Name" : "الاسم الاول"}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
                 </div>
                 <div className="mb-3 col-12 col-md-6">
                   <label htmlFor="exampleInputSecond" className="form-label">
-                    Last Name
+                    {lang === "en" ? "Last Name" : "الاسم الأخير"}
                   </label>
                   <input
                     type="text"
                     className="form-control"
                     id="exampleInputSecond"
-                    placeholder="Last Name"
+                    placeholder={lang === "en" ? "Last Name" : "الاسم الأخير"}
                     value={last_name}
                     onChange={(e) => setLast_name(e.target.value)}
                   />
@@ -93,14 +91,14 @@ function Register({lang,setUserName}) {
 
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">
-                  Email
+                  {lang === "en" ? "Email" : "البريد الالكترونى"}
                 </label>
                 <input
                   type="email"
                   className="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
-                  placeholder="Email"
+                  placeholder={lang === "en" ? "Email" : "البريد الالكترونى"}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -109,13 +107,13 @@ function Register({lang,setUserName}) {
               <div className="row">
                 <div className="mb-3 col-12 col-md-6">
                   <label htmlFor="exampleInputPassword1" className="form-label">
-                    Password
+                    {lang === "en" ? "Password" : "كلمة السر"}
                   </label>
                   <input
                     type="password"
                     className="form-control"
                     id="exampleInputPassword1"
-                    placeholder="Password"
+                    placeholder={lang === "en" ? "Password" : "كلمة السر"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
@@ -125,13 +123,15 @@ function Register({lang,setUserName}) {
                     htmlFor="exampleInputConfirmPassword"
                     className="form-label"
                   >
-                    Confirm Password
+                    {lang === "en" ? "Confirm Password" : "تأكيد كلمة السر"}
                   </label>
                   <input
                     type="password"
                     className="form-control"
                     id="exampleInputConfirmPassword"
-                    placeholder="Confirm Password"
+                    placeholder={
+                      lang === "en" ? "Confirm Password" : "تأكيد كلمة السر"
+                    }
                     value={confirm_password}
                     onChange={(e) => setConfirm_password(e.target.value)}
                   />
@@ -142,10 +142,12 @@ function Register({lang,setUserName}) {
               <div className="row">
                 <div className="mb-3 col-12 col-md-6">
                   <label htmlFor="exampleInputPhone" className="form-label">
-                    Phone
+                    {lang === "en" ? "Phone" : "رقم الهاتف"}
                   </label>
                   <PhoneInput
-                    placeholder="Enter phone number"
+                    placeholder={
+                      lang === "en" ? "Enter phone number" : "ادخل رقم الهاتف"
+                    }
                     value={phone}
                     onChange={setPhone}
                   />
@@ -154,13 +156,13 @@ function Register({lang,setUserName}) {
               {/* Job Title */}
               <div className="mb-3 col-12">
                 <label htmlFor="exampleInputJob" className="form-label">
-                  Job Title
+                  {lang === "en" ? "Job Title" : "عنوان الوظيفة"}
                 </label>
                 <input
                   type="text"
                   className="form-control"
                   id="exampleInputJob"
-                  placeholder="Job Title"
+                  placeholder={lang === "en" ? "Job Title" : "عنوان الوظيفة"}
                   value={job_title}
                   onChange={(e) => setJob_title(e.target.value)}
                 />
@@ -170,7 +172,7 @@ function Register({lang,setUserName}) {
               <div className="row">
                 <div className="mb-3 col-12 col-md-6">
                   <label htmlFor="exampleInputPassword1" className="form-label">
-                    Country
+                    {lang === "en" ? "Country" : "البلد"}
                   </label>
                   <CountryDropdown
                     value={country}
@@ -180,7 +182,7 @@ function Register({lang,setUserName}) {
                 </div>
                 <div className="mb-3 col-12 col-md-6">
                   <label htmlFor="exampleInputcity" className="form-label">
-                    city
+                    {lang === "en" ? "city" : "المدينة"}
                   </label>
                   <RegionDropdown
                     country={country}
@@ -191,7 +193,7 @@ function Register({lang,setUserName}) {
                 </div>
               </div>
 
-              <div className="mb-3 form-check flex-center gap-2">
+              <div className="mb-3 form-check flex-center gap-4">
                 <input
                   type="checkbox"
                   className="form-check-input"
@@ -199,9 +201,20 @@ function Register({lang,setUserName}) {
                   onChange={(e) => setCheckBtn(!checkBtn)}
                 />
                 <label className="form-check-label" htmlFor="exampleCheck1">
-                  By signing up you agree to our
-                  <Link to="/terms"> Terms & Conditions</Link> &{" "}
-                  <Link to="/policy">Privacy Policy</Link>.
+                  {lang === "en" ? (
+                    <>
+                      By signing up you agree to our
+                      <Link to="/terms"> Terms & Conditions</Link> &{" "}
+                      <Link to="/policy">Privacy Policy</Link>.
+                    </>
+                  ) : (
+                    <>
+                      {" "}
+                      بالتسجيل فإنك توافق على
+                      <Link to="/terms"> الشروط والأحكام</Link> و{" "}
+                      <Link to="/policy">سياسة الخصوصية</Link> الخاصة بنا.
+                    </>
+                  )}
                 </label>
               </div>
               <button
@@ -209,12 +222,21 @@ function Register({lang,setUserName}) {
                 disabled={checkBtn}
                 className="btn btn-custom btn-fw"
               >
-                Submit
+                {lang === "en" ? "Submit" : "ارسال"}
               </button>
 
               <div className="mt-3 already">
                 <h6>
-                  Already have an account? <Link to="/login">Sign in here</Link>
+                
+                  {lang === "en" ? (
+                    <>
+                        Already have an account? <Link to="/login">Sign in here</Link>
+                    </>
+                  ) : (
+                    <>
+                        هل لديك حساب؟ <Link to="/login">تسجيل الدخول هنا</Link>
+                    </>
+                  )}
                 </h6>
               </div>
             </form>

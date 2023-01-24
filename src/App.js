@@ -8,7 +8,6 @@ import {
 import "./App.css";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
-import { GlobalProvider } from "./context/GlobalContext";
 import About from "./pages/About";
 import Cart from "./pages/Cart";
 import ContactUs from "./pages/ContactUs";
@@ -27,9 +26,8 @@ function App() {
   const [loadingProducts, setLoadingProducts] = useState(true);
   const [productsData, setProductsData] = useState(true);
   const [tokenQTap, setTokenQTap] = useState(null);
-  const [userName, setUserName] = useState("");
 
-  console.log("userName",userName)
+  // console.log("userName",userName)
 
   // To Change Direction In Body html and css
   useEffect(() => {
@@ -65,7 +63,6 @@ function App() {
         ? JSON.parse(localStorage.getItem("token-q-tap"))
         : null
     );
-
   }, []);
 
   function ScrollToTop() {
@@ -76,7 +73,6 @@ function App() {
     return null;
   }
   return (
-    // <GlobalProvider>
     <div className="App">
       <Router>
         <ScrollToTop />
@@ -89,6 +85,7 @@ function App() {
                 lang={lang}
                 productsData={productsData}
                 loadingProducts={loadingProducts}
+                tokenQTap={tokenQTap}
               />
             }
           />
@@ -98,6 +95,7 @@ function App() {
             element={
               <Store
                 productsData={productsData}
+                tokenQTap={tokenQTap}
                 loadingProducts={loadingProducts}
                 lang={lang}
               />
@@ -105,20 +103,31 @@ function App() {
           />
           <Route
             path="/product/:id"
-            element={<Product lang={lang} productsData={productsData} />}
+            element={
+              <Product
+                lang={lang}
+                productsData={productsData}
+                tokenQTap={tokenQTap}
+              />
+            }
           />
-          <Route path="/register" element={<Register lang={lang} setUserName={setUserName} />} />
-          <Route path="/login" element={<Login lang={lang}/>} />
+          <Route path="/register" element={<Register lang={lang} />} />
+          <Route path="/login" element={<Login lang={lang} />} />
           <Route path="/terms" element={<Terms lang={lang} />} />
           <Route path="/policy" element={<Policy lang={lang} />} />
-          <Route path="/forget-password" element={<ForgetPassword lang={lang}/>} />
-          <Route path="/cart" element={<Cart lang={lang}/>} />
+          <Route
+            path="/forget-password"
+            element={<ForgetPassword lang={lang} />}
+          />
+          <Route
+            path="/cart"
+            element={<Cart lang={lang} tokenQTap={tokenQTap} />}
+          />
           <Route path="/Contact" element={<ContactUs lang={lang} />} />
         </Routes>
         <Footer />
       </Router>
     </div>
-    // </GlobalProvider>
   );
 }
 

@@ -59,28 +59,30 @@ const Navbar = ({ loadingLogo, setLang, lang, tokenQTap }) => {
                 <option value="ar">AR</option>
               </select>
             </div>
-            <div className="mx-3 cart-div">
-              <Link to="/cart" className="flex-center">
-                <BsCart />
-              </Link>
-            </div>
             {!tokenQTap ? (
-              <Link to="/register">
+              <Link to="/login">
                 <button className="btn btn-custom">
                   {lang === "en" ? `Login` : `تسجيل دخول`}
                 </button>
               </Link>
             ) : (
-              <div
-                className="profile-navbar"
-                onClick={() => setDropNav(!dropNav)}
-              >
-                <img src={profileImg} alt="profile-img" loading="lazy" />
-                <span className="flex-center">
-                  <MdKeyboardArrowDown />
-                </span>
-                {dropNav && <Dropdown lang={lang} />}
-              </div>
+              <>
+                <div className="mx-3 cart-div">
+                  <Link to="/cart" className="flex-center">
+                    <BsCart />
+                  </Link>
+                </div>
+                <div
+                  className="profile-navbar"
+                  onClick={() => setDropNav(!dropNav)}
+                >
+                  <img src={profileImg} alt="profile-img" loading="lazy" />
+                  <span className="flex-center">
+                    <MdKeyboardArrowDown />
+                  </span>
+                  {dropNav && <Dropdown lang={lang} />}
+                </div>
+              </>
             )}
           </ul>
         </div>

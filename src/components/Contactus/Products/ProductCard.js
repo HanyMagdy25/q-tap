@@ -26,6 +26,9 @@ function ProductCard({ item, lang, tokenQTap }) {
         lang: lang,
         user: tokenQTap.user.id,
         Authorization: `Bearer ${tokenQTap.token}`,
+       
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify(blog),
     })

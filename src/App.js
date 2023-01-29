@@ -19,7 +19,7 @@ import Product from "./pages/Product";
 import Register from "./pages/Register";
 import Store from "./pages/Store";
 import Terms from "./pages/Terms";
-const url_main = "http://q-tap-dashboard.technomasrsystems.com";
+const url_main = "https://q-tap-dashboard.technomasrsystems.com";
 
 function App() {
   const [lang, setLang] = useState("en");

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ContactUsForm.css";
 
-const url_main = "http://q-tap-dashboard.technomasrsystems.com";
+const url_main = "https://q-tap-dashboard.technomasrsystems.com";
 function ContactUsForm({ lang }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

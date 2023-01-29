@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-const url_main = "http://q-tap-dashboard.technomasrsystems.com";
+const url_main = "https://q-tap-dashboard.technomasrsystems.com";
 
 function Login({ lang }) {
   const [email, setEmail] = useState("");

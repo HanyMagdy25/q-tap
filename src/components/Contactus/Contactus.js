@@ -6,7 +6,7 @@ import youtube from "../../assets/youtube.png";
 import facebookImg from "../../assets/facebook.png";
 import twitterImg from "../../assets/twitter.png";
 import { useState } from "react";
-const url_main = "http://q-tap-dashboard.technomasrsystems.com";
+const url_main = "https://q-tap-dashboard.technomasrsystems.com";
 
 function Contactus({ loadingContact, contactData, followUsData, lang }) {
   const [name, setName] = useState("");

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner/Spinner";
-const url_main = "http://q-tap-dashboard.technomasrsystems.com";
+const url_main = "https://q-tap-dashboard.technomasrsystems.com";
 
 function About({ lang }) {
   const [loadingAbout, setLoadingAbout] = useState(true);
@@ -11,6 +11,7 @@ function About({ lang }) {
       headers: {
         "Content-Type": "application/json",
         lang: lang,
+
       },
     })
       .then((res) => {

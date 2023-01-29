@@ -4,7 +4,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { MdLogout } from "react-icons/md";
 
 // MdLogout
-// const url_main = "http://q-tap-dashboard.technomasrsystems.com";
+// const url_main = "https://q-tap-dashboard.technomasrsystems.com";
 const Dropdown = ({ lang }) => {
   const [drop, setDrop] = useState(false);
   // const handleLogout = (e) => {

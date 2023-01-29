@@ -3,10 +3,9 @@ import CardProduct from "../components/CardProduct/CardProduct";
 import emptyImage from "../assets/empty.png";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-const url_main = "http://q-tap-dashboard.technomasrsystems.com";
+const url_main = "https://q-tap-dashboard.technomasrsystems.com";
 
-function Cart({lang ,tokenQTap} ) {
-
+function Cart({ lang, tokenQTap }) {
   const [total, setTotal] = useState(null);
   const [cartProducts, setCartProducts] = useState([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
@@ -18,18 +17,21 @@ function Cart({lang ,tokenQTap} ) {
         lang: lang,
         user: tokenQTap.user.id,
         Authorization: `Bearer ${tokenQTap.token}`,
+        // withCredentials: true,
+        // crossorigin: true,
+        // mode: "no-cors",
+        // 'Access-Control-Allow-Origin': '*',
       },
     })
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data.data)
+        console.log(data.data);
         setLoadingProducts(false);
         setCartProducts(data.data);
       });
   }, [lang, tokenQTap.token, tokenQTap.user.id]);
-  
 
   return (
     <>

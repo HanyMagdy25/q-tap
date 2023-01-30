@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-const url_main = "http://q-tap-dashboard.technomasrsystems.com";
+const url_main = "https://q-tap-dashboard.technomasrsystems.com";
 
 function ProductCard({ item, lang, tokenQTap }) {
   function truncate(string, n) {
@@ -27,8 +27,7 @@ function ProductCard({ item, lang, tokenQTap }) {
         user: tokenQTap.user.id,
         Authorization: `Bearer ${tokenQTap.token}`,
        
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
+      
       },
       body: JSON.stringify(blog),
     })

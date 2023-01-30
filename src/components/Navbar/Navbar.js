@@ -53,6 +53,7 @@ const Navbar = ({ loadingLogo, setLang, lang, tokenQTap }) => {
                 onChange={(e) => {
                   handleClick();
                   setLang(e.target.value);
+                  localStorage.setItem("qTapLanguage",JSON.stringify(e.target.value))
                 }}
               >
                 <option value="en">EN</option>

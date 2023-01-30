@@ -22,7 +22,7 @@ import Terms from "./pages/Terms";
 const url_main = "https://q-tap-dashboard.technomasrsystems.com";
 
 function App() {
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState(null);
   const [loadingProducts, setLoadingProducts] = useState(true);
   const [productsData, setProductsData] = useState(true);
   const [tokenQTap, setTokenQTap] = useState(null);
@@ -39,6 +39,13 @@ function App() {
     }
   }, [lang]);
 
+  useEffect(() => {
+    setLang(
+      localStorage.getItem("qTapLanguage")
+        ? JSON.parse(localStorage.getItem("qTapLanguage"))
+        : localStorage.setItem("qTapLanguage",JSON.stringify("en"))
+    );
+  }, []);
   // To Fetch Products Data
   useEffect(() => {
     fetch(`${url_main}/api/products`, {

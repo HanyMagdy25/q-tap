@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar/Navbar";
 import About from "./pages/About";
 import Cart from "./pages/Cart";
 import ContactUs from "./pages/ContactUs";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import ForgetPassword from "./pages/ForgetPassword";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -130,9 +131,10 @@ function App() {
             path="/cart"
             element={<Cart lang={lang} tokenQTap={tokenQTap} />}
           />
-          <Route path="/Contact" element={<ContactUs lang={lang} />} />
+          <Route path="/contact" element={<ContactUs lang={lang} />} />
+          <Route path="/dashboard" element={<Dashboard lang={lang} />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </div>
   );

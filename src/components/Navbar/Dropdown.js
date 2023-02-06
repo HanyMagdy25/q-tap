@@ -4,7 +4,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { MdLogout } from "react-icons/md";
 
 // MdLogout
-// const url_main = "https://q-tap-dashboard.technomasrsystems.com";
+// const url_main = 'https://qtap-dashboard.qutap.co'
 const Dropdown = ({ lang }) => {
   const [drop, setDrop] = useState(false);
   // const handleLogout = (e) => {
@@ -40,7 +40,7 @@ const Dropdown = ({ lang }) => {
     <>
       <ul onClick={() => setDrop(!drop)} className="dropdown-main">
         <li>
-          <a href="https://www.dibiz.com/?a_l=1" onClick={() => setDrop(!drop)}>
+          <a href="/dashboard/main" onClick={() => setDrop(!drop)}>
             {lang === "en" ? (
               <>
                 <span className="flex-center">

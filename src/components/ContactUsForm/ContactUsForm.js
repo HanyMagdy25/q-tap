@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ContactUsForm.css";
 
-const url_main = "https://q-tap-dashboard.technomasrsystems.com";
+const url_main = 'https://qtap-dashboard.qutap.co'
 function ContactUsForm({ lang }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -44,7 +44,7 @@ function ContactUsForm({ lang }) {
       <div className="contactUs__container">
         <div className="flex-center">
           <div className="main__title-div">
-            <h2 className="main__title">
+            <h2 className="main__title" >
               {lang === "en" ? "Keep In Touch" : "ابقى على اتصال"}
             </h2>
           </div>

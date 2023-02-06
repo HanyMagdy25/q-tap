@@ -6,7 +6,7 @@ import Features from "../components/Features/Features";
 import Hero from "../components/Hero/Hero";
 import Spinner from "../components/Spinner/Spinner";
 
-const url_main = "https://q-tap-dashboard.technomasrsystems.com";
+const url_main = 'https://qtap-dashboard.qutap.co'
 
 function Home({ lang, productsData, loadingProducts ,tokenQTap}) {
   const [loadingHero, setLoadingHero] = useState(true);

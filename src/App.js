@@ -12,6 +12,8 @@ import About from "./pages/About";
 import Cart from "./pages/Cart";
 import ContactUs from "./pages/ContactUs";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import AddCard from "./pages/Dashboard/pages/AddCard/AddCard";
+import Main from "./pages/Dashboard/pages/Main/Main";
 import ForgetPassword from "./pages/ForgetPassword";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -20,13 +22,19 @@ import Product from "./pages/Product";
 import Register from "./pages/Register";
 import Store from "./pages/Store";
 import Terms from "./pages/Terms";
-const url_main = "https://q-tap-dashboard.technomasrsystems.com";
+const url_main = 'https://qtap-dashboard.qutap.co'
+
 
 function App() {
   const [lang, setLang] = useState(null);
   const [loadingProducts, setLoadingProducts] = useState(true);
   const [productsData, setProductsData] = useState(true);
   const [tokenQTap, setTokenQTap] = useState(null);
+
+  const pathname = window.location.href;
+  const [notIsDashboard, setNotIsDashboard] = useState(false);
+
+  // console.log(pathname)
 
   // console.log("userName",userName)
 
@@ -44,7 +52,7 @@ function App() {
     setLang(
       localStorage.getItem("qTapLanguage")
         ? JSON.parse(localStorage.getItem("qTapLanguage"))
-        : localStorage.setItem("qTapLanguage",JSON.stringify("en"))
+        : localStorage.setItem("qTapLanguage", JSON.stringify("en"))
     );
   }, []);
   // To Fetch Products Data
@@ -80,11 +88,21 @@ function App() {
     }, [pathname]);
     return null;
   }
+
+  useEffect(() => {
+    if (pathname.includes("/dashboard")) {
+      return setNotIsDashboard(false);
+    }
+    setNotIsDashboard(true);
+  }, [pathname]);
+
   return (
     <div className="App">
       <Router>
         <ScrollToTop />
-        <Navbar setLang={setLang} lang={lang} tokenQTap={tokenQTap} />
+        {notIsDashboard && (
+          <Navbar setLang={setLang} lang={lang} tokenQTap={tokenQTap} />
+        )}
         <Routes>
           <Route
             path="/"
@@ -132,9 +150,10 @@ function App() {
             element={<Cart lang={lang} tokenQTap={tokenQTap} />}
           />
           <Route path="/contact" element={<ContactUs lang={lang} />} />
-          <Route path="/dashboard" element={<Dashboard lang={lang} />} />
+          <Route path="/dashboard/addcard" element={<AddCard lang={lang} />} />
+          <Route path="/dashboard/main" element={<Main lang={lang} />} />
         </Routes>
-        {/* <Footer /> */}
+        {notIsDashboard && <Footer />}
       </Router>
     </div>
   );

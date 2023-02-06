@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-const url_main = "https://q-tap-dashboard.technomasrsystems.com";
+const url_main = 'https://qtap-dashboard.qutap.co'
 
 function ProductCard({ item, lang, tokenQTap }) {
   function truncate(string, n) {

@@ -3,7 +3,7 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import { Link } from "react-router-dom";
-const url_main = "https://q-tap-dashboard.technomasrsystems.com";
+const url_main = 'https://qtap-dashboard.qutap.co'
 function Register({ lang }) {
   const [country, setCountry] = useState("");
   const [region, setRegion] = useState("");

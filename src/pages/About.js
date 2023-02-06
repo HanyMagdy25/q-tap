@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner/Spinner";
-const url_main = "https://q-tap-dashboard.technomasrsystems.com";
+const url_main = 'https://qtap-dashboard.qutap.co'
 
 function About({ lang }) {
   const [loadingAbout, setLoadingAbout] = useState(true);

@@ -3,7 +3,7 @@ import CardProduct from "../components/CardProduct/CardProduct";
 import emptyImage from "../assets/empty.png";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-const url_main = "https://q-tap-dashboard.technomasrsystems.com";
+const url_main = 'https://qtap-dashboard.qutap.co'
 
 function Cart({ lang, tokenQTap }) {
   const [total, setTotal] = useState(null);
